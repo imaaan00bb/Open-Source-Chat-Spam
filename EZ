@@ -1,0 +1,66 @@
+local cloneref = clonereference or cloneref
+local cache = {}
+local Services = setmetatable({}, {
+    __index = function(_, serviceName)
+        local service = cache[serviceName]
+        if not service then
+            service = cloneref(game:GetService(serviceName))
+            cache[serviceName] = service
+        end
+        return service
+    end
+})
+
+local ReplicatedStorage, TextChatService = Services.ReplicatedStorage, Services.TextChatService
+local Remote = ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents").SayMessageRequest or nil
+
+local Packages = {
+    Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))(),
+    Lines = {"W4T3H 0U5", "W4T3H 0U1"}
+}
+
+
+local Window = Packages.Rayfield:CreateWindow({
+    Name = "RizzGen",
+    LoadingTitle = "RizzGen is out!!!",
+    LoadingSubtitle = "by youraveragebacon on discord",
+    ConfigurationSaving = { -- this dogshit that i dont have to use has to be here
+       Enabled = false,
+       FolderName = nil, 
+       FileName = "RizzScripts"
+    },
+    Discord = { -- this dogshit that i dont have to use has to be here
+       Enabled = false,
+       Invite = "noinvitelink", 
+       RememberJoins = true 
+    },
+    KeySystem = false, 
+    KeySettings = { -- this dogshit that i dont have to use has to be here
+       Title = "Untitled",
+       Subtitle = "Key System",
+       Note = "No method of obtaining the key is provided",
+       FileName = "Key", 
+       SaveKey = true, 
+       GrabKeyFromSite = false,
+       Key = {"Hello"} 
+    }
+})
+
+local Tabs = {
+    Main = Window:CreateTab("Main", 4483362458)
+}
+local RizzlerModule = Tabs.Main:CreateSection("SPAM BOII")
+
+Tabs.Main:CreateButton({
+    Name = "start the spam LOLO",
+    Callback = function()
+       while wait() do
+        RandomLine = Packages.Lines[math.random(1, #Packages.Lines)]
+        if Remote then
+            Remote:FireServer(RandomLine, "All")
+        else
+            TargetChannel = TextChatService.TextChannels["RBXGeneral"]
+            TargetChannel:SendAsync(RandomLine)
+        end
+    end
+})
