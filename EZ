@@ -16,18 +16,18 @@ local Remote = ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents").S
 
 local Packages = {
     Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))(),
-    Lines = {"W4T3H 0U5", "W4T3H 0U1"}
+    Lines = {"W4T3H 0U1","W4T3H 0U5"}
 }
 
 
 local Window = Packages.Rayfield:CreateWindow({
-    Name = "RizzGen",
-    LoadingTitle = "RizzGen is out!!!",
+    Name = "ChatSpam",
+    LoadingTitle = "ChatSpam is out!!!",
     LoadingSubtitle = "by youraveragebacon on discord",
     ConfigurationSaving = { -- this dogshit that i dont have to use has to be here
        Enabled = false,
        FolderName = nil, 
-       FileName = "RizzScripts"
+       FileName = "ChatSpam"
     },
     Discord = { -- this dogshit that i dont have to use has to be here
        Enabled = false,
@@ -49,12 +49,11 @@ local Window = Packages.Rayfield:CreateWindow({
 local Tabs = {
     Main = Window:CreateTab("Main", 4483362458)
 }
-local RizzlerModule = Tabs.Main:CreateSection("SPAM BOII")
+local RizzlerModule = Tabs.Main:CreateSection("BREAK DA GAME")
 
 Tabs.Main:CreateButton({
-    Name = "start the spam LOLO",
+    Name = "spamn chat boiiii!",
     Callback = function()
-       while wait() do
         RandomLine = Packages.Lines[math.random(1, #Packages.Lines)]
         if Remote then
             Remote:FireServer(RandomLine, "All")
